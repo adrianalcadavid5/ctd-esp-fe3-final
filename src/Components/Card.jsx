@@ -1,4 +1,5 @@
 import React from "react";
+import CardStyles from "../Styles/Card.module.css";
 
 
 const Card = ({ name, username, id }) => {
@@ -8,7 +9,7 @@ const Card = ({ name, username, id }) => {
   }
 
   return (
-    <div className="card">
+    <div className={CardStyles.cardContainer}>
         {/* En cada card deberan mostrar en name - username y el id */}
 
         {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
