@@ -4,10 +4,11 @@
     align-items: center;
     border: 2px solid firebrick;
     border-radius: 10px;
-    margin: 10px;
+    margin: 20px;
     padding: 10px;
-    background-color: #daebee;
+    background-color: #fdf2da;
     color: firebrick;
+    
   }
   
   .cardContainer img {

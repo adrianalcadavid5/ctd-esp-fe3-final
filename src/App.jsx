@@ -8,9 +8,6 @@ import Detail from "./Routes/Detail";
 import Notfound from "./Routes/Notfound";
 
 
-
-
-
 function App() {
   return (
       <div className="App">
