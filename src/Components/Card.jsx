@@ -7,9 +7,21 @@ import { Link, useLocation } from "react-router-dom";
 
 const Card = ({ dentista }) => {
   const {name, username, id} = dentista;
-  const {dispatch} = useDentistState();
-  const [fav, setFavorito] = useState(0)
+  const {state, dispatch} = useDentistState();
   const location = useLocation();
+
+  //verifico si la card elegida ya esta en favoritos para no duplicarla
+  const isFav = state.fav.some((fav)=> fav.id === id);
+
+  const handleAddToFav = () => {
+    if (!isFav) {
+      dispatch({
+        type: "ADD_FAVS", payload: dentista, //agrega el destista completo
+      });
+    }else {
+      alert("El odontologo elegido ya esta en tu lista de favoritos.");
+    }
+  };
 
   return (
     <div className={CardStyles.cardContainer}>
@@ -21,19 +33,9 @@ const Card = ({ dentista }) => {
       {location.pathname === "/favoritos" ? (
         <h2>Odontologos Favoritos : </h2>
       ) : (
-        <>
-            <button
-                
-                onClick={() =>
-                    dispatch({
-                        type: "ADD_FAVS",
-                        payload: { ...dentista, fav: fav },
-                    })
-                }
-            >
-                Agregar a favoritos
-            </button>
-        </>
+
+            <button onClick={handleAddToFav}>Agregar a favoritos</button>
+
     )}
 </div>
 );
@@ -41,9 +43,3 @@ const Card = ({ dentista }) => {
 
 export default Card;
 
-/*
-const addFav = ()=>{
-    // Aqui iria la logica para agregar la Card en el localStorage
-  }
-
-  */

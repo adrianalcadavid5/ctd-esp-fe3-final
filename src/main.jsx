@@ -5,6 +5,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import Context from "./Context/Context"
 import { ThemeProvider } from './Context/ThemeContext';
+import ErrorBoundary from './ErrorBoundaries/ErrorBoundary';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,7 +14,9 @@ root.render(
     <BrowserRouter>
       <Context>
         <ThemeProvider>
-          <App />
+          <ErrorBoundary>
+            <App />
+          </ErrorBoundary>
         </ThemeProvider>
       </Context>
     </BrowserRouter>

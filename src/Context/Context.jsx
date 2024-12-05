@@ -1,34 +1,46 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useReducer, useState } from "react";
+import { createContext, useContext, useEffect, useReducer} from "react";
 import { reducer } from "../Reducers/reducer";
 
 const DentistStates = createContext();
 
+//inicalizamos los datos seguros desde LocalStorage
 const initialState = {
-  fav: [],
-  data: []
-}
-const lsFavs = JSON.parse(localStorage.getItem("favs")) || [];
+  fav: (() => {
+    try {
+      const storedFavs = localStorage.getItem("favs");
+      return storedFavs ? JSON.parse(storedFavs) : []; // Manejo seguro de localStorage
+    } catch (error) {
+      console.warn("Error al parsear favoritos desde localStorage:", error);
+      return [];
+    }
+  })(),
+  data: [], // Inicialización de los datos de la API
+};
 
 
 const Context = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [favs, setFavs] = useState(lsFavs);
+
   
   const url = "https://jsonplaceholder.typicode.com/users";
+  
+  //Para obtener los datos de la api.
   useEffect(() => {
     axios(url)
       .then((res) => {
-        console.log("Datos recibidos de la API:", res.data); // Verifica aquí los datos
+        console.log("Datos recibidos de la API:", res.data);
         dispatch({ type: "GET_DENTISTS", payload: res.data });
       })
       .catch((error) => console.error("Error al obtener datos:", error));
   }, []);
 
-  useEffect(()=>{
-    localStorage.setItem("favs", JSON.stringify(favs))
-  },[favs]);
+  //Para actualizar el localStorage cada vez que cambie el estado de favoritos
+
+  useEffect(() => {
+    localStorage.setItem("favs", JSON.stringify(state.fav));
+  }, [state.fav]); // Observa `state.fav` para guardar favoritos
 
   return (
     <div>
@@ -40,4 +52,5 @@ const Context = ({ children }) => {
 };
 export default Context;
 
+// Hook para acceder al contexto
 export const useDentistState = () => useContext(DentistStates);
