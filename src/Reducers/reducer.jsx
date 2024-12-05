@@ -8,6 +8,11 @@ export const reducer = (state, action) => {
           return state; // No agrega duplicados
         }
         return {...state, fav: [...state.fav, action.payload]};//que me traiga el estado, luego a cart,,, con el state traigo a cart y que me traiga lo que tenia y luego lo nuevo
+        case "REMOVE_FAVS":
+          return {
+            ...state,
+            fav: state.fav.filter((fav) => fav.id !== action.payload.id),
+          };
       default:
         throw new Error("Acción no existente");
     }

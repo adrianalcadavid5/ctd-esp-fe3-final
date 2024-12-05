@@ -2,7 +2,6 @@ import React from "react";
 import Card from "../Components/Card";
 import { useDentistState } from "../Context/Context";
 
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Favs = () => {
   const {state} = useDentistState();
@@ -10,12 +9,14 @@ const Favs = () => {
   return (
     <>
       <h1>Favoritos</h1>
-      <div >
-        {state.fav?.map((fav)=>(
-          <Card
-          key={fav.id}
-          dentista={fav}/>
-        ))}
+      <div>
+        {state.fav.length === 0 ? (
+          <p>No tienes odontologos en tu lista de favoritos aún.</p>
+        ) : (
+          state.fav.map((fav) => (
+            <Card key={fav.id} dentista={fav} />
+          ))
+        )}
       </div>
     </>
   );
