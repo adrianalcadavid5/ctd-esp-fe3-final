@@ -3,21 +3,16 @@ import { themeReducer } from "../Reducers/ThemeReducer";
 
 // Estado inicial
 const initialState = {
-  theme: 'light',
+  theme: "light",
 };
 
-
-
-// Crear el contexto
 export const ThemeContext = createContext();
 
-// Proveedor del contexto
 export const ThemeProvider = ({ children }) => {
   const [state, dispatch] = useReducer(themeReducer, initialState);
 
-  // Actualiza la clase del body cada vez que cambia el tema
   useEffect(() => {
-    document.body.className = state.theme; // Agrega la clase 'light' o 'dark' al body
+    document.body.className = state.theme;
   }, [state.theme]);
 
   return (

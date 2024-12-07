@@ -8,7 +8,7 @@
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Esto asegura que el contenido ocupe al menos el 100% de la altura de la ventana */
+  min-height: 100vh; 
   margin: 0;
   font-family: Arial, sans-serif;
 }

@@ -1,8 +1,8 @@
 .gridContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajusta el tamaño de las columnas */
-    gap: 20px; /* Espaciado entre tarjetas */
-    padding: 20px; /* Espaciado interno */
-    justify-items: center; /* Alinear tarjetas al centro */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 20px; 
+    padding: 20px; 
+    justify-items: center; 
   }
   

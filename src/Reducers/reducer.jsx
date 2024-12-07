@@ -1,21 +1,18 @@
 export const reducer = (state, action) => {
-    switch(action.type){
-      case "GET_DENTISTS":
-        return {...state, data: action.payload};//con ... copio lo que trae el estado : paso lo que deseo modificar que lo traigo del dispatch
-      case "ADD_FAVS":
-        //verifico si el favorito ya ha sido agregado a la lista
-        if (state.fav.some((fav) => fav.id === action.payload.id)) {
-          return state; // No agrega duplicados
-        }
-        return {...state, fav: [...state.fav, action.payload]};//que me traiga el estado, luego a cart,,, con el state traigo a cart y que me traiga lo que tenia y luego lo nuevo
-        case "REMOVE_FAVS":
-          return {
-            ...state,
-            fav: state.fav.filter((fav) => fav.id !== action.payload.id),
-          };
-      default:
-        throw new Error("Acción no existente");
-    }
-  
-  };
-  //indicamos que tipo de accion voy a realizar dentro de un switch
+  switch (action.type) {
+    case "GET_DENTISTS":
+      return { ...state, data: action.payload };
+    case "ADD_FAVS":
+      if (state.fav.some((fav) => fav.id === action.payload.id)) {
+        return state;
+      }
+      return { ...state, fav: [...state.fav, action.payload] };
+    case "REMOVE_FAVS":
+      return {
+        ...state,
+        fav: state.fav.filter((fav) => fav.id !== action.payload.id),
+      };
+    default:
+      throw new Error("Acción no existente");
+  }
+};

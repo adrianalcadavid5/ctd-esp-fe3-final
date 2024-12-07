@@ -1,25 +1,21 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import DetailStyles from "../Styles/Detail.module.css"
-
-
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import DetailStyles from "../Styles/Detail.module.css";
 
 const Detail = () => {
- 
-  const [dentista, setDentista] = useState({})
-  const {id} = useParams();
-  console.log(id); //para ver la información que me trae.
+  const [dentista, setDentista] = useState({});
+  const { id } = useParams();
+  console.log(id);
 
   const url = `https://jsonplaceholder.typicode.com/users/${id}`;
 
-  useEffect(()=>{
-    axios(url).then((res)=>{
+  useEffect(() => {
+    axios(url).then((res) => {
       console.log(res.data);
-      setDentista(res.data)
-    })
-  },[]);
+      setDentista(res.data);
+    });
+  }, []);
 
   return (
     <div className={DetailStyles.cardContainer}>
@@ -30,7 +26,7 @@ const Detail = () => {
       <h3>Telefono de contacto: {dentista.phone}</h3>
       <h3>{dentista.website}</h3>
     </div>
-  )
-}
+  );
+};
 
-export default Detail
+export default Detail;
