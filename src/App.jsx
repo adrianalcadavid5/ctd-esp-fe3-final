@@ -7,19 +7,20 @@ import Notfound from "./Routes/Notfound";
 import Layout from "./Layouts/Layout";
 
 
+
 function App() {
   return (
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Layout/>}>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/envio" element={<Contact/>}/>
-            <Route path="/favoritos" element={<Favs/>}/>
-            <Route path="/detail/:id" element={<Detail/>}/>
-            <Route path="*" element={<Notfound/>}/>
-          </Route>
-        </Routes>
-      </div>
+    <div className="mainContent">
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/envio" element={<Contact/>}/>
+          <Route path="/favoritos" element={<Favs/>}/>
+          <Route path="/detail/:id" element={<Detail/>}/>
+          <Route path="*" element={<Notfound/>}/>
+        </Route>
+      </Routes>
+    </div>
   );
 }
 

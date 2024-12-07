@@ -1,19 +1,12 @@
 import React, { createContext, useReducer, useEffect } from "react";
+import { themeReducer } from "../Reducers/ThemeReducer";
 
 // Estado inicial
 const initialState = {
   theme: 'light',
 };
 
-// Reducer para manejar el cambio de tema
-const themeReducer = (state, action) => {
-  switch (action.type) {
-    case "TOGGLE_THEME":
-      return { ...state, theme: state.theme === "light" ? "dark" : "light" };
-    default:
-      return state;
-  }
-};
+
 
 // Crear el contexto
 export const ThemeContext = createContext();
